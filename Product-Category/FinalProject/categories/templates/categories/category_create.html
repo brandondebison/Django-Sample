@@ -1,0 +1,24 @@
+{% extends 'base_layout.html' %} 
+
+{% block title %}
+    <title>Create Category</title>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center"> 
+        <h2>Create a New Category</h2>
+    </div>
+    <div class="d-flex justify-content-center"> 
+    
+        <form class="site-form" action="{% url 'categories:create'%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Create"> 
+        </form>
+    </div>
+
+
+<script src="/static/slugify.js"></script>
+
+
+{% endblock %}

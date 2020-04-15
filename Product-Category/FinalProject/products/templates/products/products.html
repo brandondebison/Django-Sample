@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %} 
+
+{% block title %}
+    <title>Products</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Product List</h1>
+    <div class="products">
+        {% for product in products %} 
+            <div class="product"> 
+                <h2><a href="#">{{product.title}}</a></h2>
+                <!-- <p>{{product.category}}</p> -->
+                <p>{{product.snippet}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.quantity}}</p>
+                <p>{{product.sku}}</p>
+                <!-- <img {{product.sku}}/> -->
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

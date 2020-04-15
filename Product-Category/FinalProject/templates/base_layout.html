@@ -1,0 +1,36 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block title%}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav class="d-flex flex-row justify-content-end navBarMod space">
+        {% if user.is_authenticated %}  
+            <form class=" space" action="{% url 'accounts:logout'%}" method="post">
+                {% csrf_token %}
+                <button type="subtmit button" class="btn btn-danger"> Logout </button>
+            </form>
+            <a href="{% url 'homepage' %}"><button type="button" class="btn btn-info  space">Back to Homepage</button></a>
+        {% else %}
+            <a href="{% url 'accounts:login' %}"><button type="button" class="btn btn-primary space">Login</button></a>
+            <a href="{% url 'accounts:signup' %}"><button type="button" class="btn btn-warning space">Signup</button></a>
+            <a href="{% url 'homepage' %}"><button type="button" class="btn btn-info space">Back to Homepage</button></a>
+        {% endif %}
+    </nav>
+
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'homepage' %}"><img class="rounded" src="{% static 'logo.png' %}"></a>
+    </div> 
+    <br/><br/><br/><br/>
+
+        {% block content%}
+        {% endblock %}
+
+</body>
+</html>

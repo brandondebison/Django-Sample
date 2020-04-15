@@ -1,0 +1,6 @@
+Nothing needed for tutorial 1
+
+Nothing needed for tutorial 2 
+    - Already installed django
+
+Nothin needed for tutorial 8 

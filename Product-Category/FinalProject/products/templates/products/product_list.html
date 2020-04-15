@@ -1,0 +1,57 @@
+{% extends 'base_layout.html' %} 
+
+{% block title %}
+    <title>Product List</title>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center"> 
+    <h1>Product List</h1>
+</div><br/>
+
+  {% if user.is_authenticated %}  
+      <div class="d-flex justify-content-center"> 
+          <a href="{% url 'products:create' %}"><button type="button" class="btn btn-info space">Add</button></a>
+          <a href="{% url 'admin:index' %}"><button type="button" class="btn btn-info space">Edit / Delete</button></a>
+      </div>
+
+  {% else %}
+      <div class="d-flex justify-content-center"> 
+          <p>(To add, edit or delete, you neeed to login)</p>
+      </div>
+  {% endif %}
+
+<div class="table-responsive d-flex justify-content-center">
+<table class="table table-striped table-bordered table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col" class="maxColWidth">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity in Stock</th>
+      <th scope="col">Sku</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %} 
+    <tr>
+      <td scope="row"><a href="{% url 'products:detail' slug=product.slug %}">{{product.title}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}">{{product.category}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}">{{product.snippet}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}">${{product.price}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}">{{product.quantity}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}">{{product.sku}}</a></td>
+      <td><a href="{% url 'products:detail' slug=product.slug %}"><img class="responsive" src="{{product.picture.url}}"/></a></td>
+    </tr>
+    {% endfor %}
+      
+  </tbody>
+</table>
+</div>
+
+
+
+
+{% endblock %}
